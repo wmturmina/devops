@@ -24,7 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf()
 		.and().authorizeRequests()
+		.antMatchers(HttpMethod.GET, "/metrics/prometheus").permitAll()
 		.antMatchers(HttpMethod.GET, "/").permitAll()
+		.antMatchers(HttpMethod.GET, "/home").permitAll()
 		.antMatchers(HttpMethod.GET, "/topicos").permitAll()
 		.antMatchers(HttpMethod.GET, "/topicos/novo").authenticated()
 		.antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
