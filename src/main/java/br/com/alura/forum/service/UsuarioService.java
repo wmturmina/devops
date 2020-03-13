@@ -11,10 +11,14 @@ import br.com.alura.forum.model.Usuario;
 
 @Service
 public class UsuarioService implements UserDetailsService {
+	
+	private UsuarioDao usuarioDao;
 
 	@Autowired
-	private UsuarioDao usuarioDao;
-	
+	public UsuarioService(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Usuario encontrado = usuarioDao.buscarPorEmail(email);

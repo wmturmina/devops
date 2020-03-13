@@ -24,6 +24,7 @@ import br.com.alura.forum.model.Topico;
 import br.com.alura.forum.model.Usuario;
 import br.com.alura.forum.model.vo.DashboardItem;
 import br.com.alura.forum.service.DashboardService;
+import io.micrometer.prometheus.PrometheusMeterRegistry;
 
 @Controller
 @RequestMapping("/topicos")
@@ -42,11 +43,15 @@ public class TopicosController {
 	
 	@Autowired
 	private DashboardService dashboardService;
+	
+	@Autowired
+	private PrometheusMeterRegistry prometheusMeterRegistry;
 
 	@GetMapping
 	public String listarTopicos(FiltrosPesquisaTopicos filtros, Model model) {
 		carregarDashboard(model);
 		carregarTopicos(filtros, model);
+		prometheusMeterRegistry.counter("topicos_list").increment();
 		return "lista-topicos";
 	}
 	
