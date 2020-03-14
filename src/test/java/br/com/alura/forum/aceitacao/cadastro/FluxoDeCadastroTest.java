@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Ignore;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.github.javafaker.Faker;
@@ -31,6 +33,7 @@ public class FluxoDeCadastroTest {
 	@Test
 	public void deve_ser_capaz_de_criar_uma_conta() throws IOException, InterruptedException {
 		Faker faker = new Faker();
+		
 		browser.get("http://localhost:8090/alura-forum/");
 		
 		TopicosPage paginaDeTopicos = new TopicosPage(browser);
